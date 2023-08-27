@@ -66,6 +66,8 @@ var student5 = Student(name: "Rob", surname: "Stark", year: 1979, mark: 5.0)
 
 var Journal = [student1, student2, student3, student4, student5]
 
+// TASK: Number 2
+
 func printJournal(_journal: [Student]) {
     for (index, student) in Journal.enumerated() {
         print("\(index+1). Name: \(student.name) \(student.surname). Year of birth: \(student.year). Avarage mark: \(student.mark)")
@@ -73,4 +75,8 @@ func printJournal(_journal: [Student]) {
     print()
 }
 
-printJournal(_journal: Journal)
+//printJournal(_journal: Journal)
+
+//printJournal(_journal:Journal.sorted(by: {$0.mark > $1.mark}))
+var sortedByMark = Journal.sorted(by: {$0.mark > $1.mark})
+print(sortedByMark)
