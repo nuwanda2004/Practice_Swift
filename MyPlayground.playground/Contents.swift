@@ -77,6 +77,6 @@ func printJournal(_journal: [Student]) {
 
 //printJournal(_journal: Journal)
 
-//printJournal(_journal:Journal.sorted(by: {$0.mark > $1.mark}))
+
 var sortedByMark = Journal.sorted(by: {$0.mark > $1.mark})
 print(sortedByMark)
