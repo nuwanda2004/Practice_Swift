@@ -51,7 +51,7 @@ print(stClass)
 */
 
 // TASK: Number1
-
+/*
 struct Student {
     var name: String
     var surname: String
@@ -80,3 +80,73 @@ func printJournal(_journal: [Student]) {
 
 var sortedByMark = Journal.sorted(by: {$0.mark > $1.mark})
 print(sortedByMark)
+
+
+*/
+
+// lesson: Properties
+import Foundation
+/*
+struct Name {
+    var firstName: String {
+        willSet(newFirstName) {
+            print("wiil set " + newFirstName + " instead of " + firstName)
+        }
+        didSet(oldFirstName) {
+            print("did set " + firstName + " instead of  " + oldFirstName)
+        }
+    }
+    
+}
+var student = Name(firstName: "Alex")
+
+student.firstName = "Bob"
+
+*/
+class Human {
+    var name: String
+    class var maxAge: Int {
+        return 100
+    }
+    var age: Int {
+        didSet {
+            if age > maxAge {
+                age = oldValue
+            }
+        }
+    }
+    
+    init(name: String, age: Int) {
+        self.name = name
+        self.age = age
+    }
+}
+
+enum Direction {
+    static let eunmDecription = "Directions in the game"
+    case Left
+    case Right
+    case Top
+    case Bottom
+}
+
+struct Cat {
+    var name: String
+    static var maxAge = 20
+    static var totalCats = 0
+    var age: Int {
+        didSet {
+            if age > Cat.maxAge {
+                age = oldValue
+            }
+        }
+    }
+    init (name: String, age: Int){
+        self.name = name
+        self.age = age
+        Cat.totalCats += 1
+    }
+}
+let human = Human(name: "Peter", age: 40)
+let cat = Cat(name: "Whiten", age: 10)
+Cat.totalCats
