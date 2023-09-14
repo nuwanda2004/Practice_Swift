@@ -1,108 +1,5 @@
-/*import Foundation
-
-class StudentClass {
-    var name : String
-    var age : Int
-    
-    init() {
-        name = "No Name"
-        age = 20
-    }
-    
-    init(name: String, age: Int) {
-        self.name = name
-        self.age = age
-    }
-}
-
-struct StudentStruct {
-    var name: String
-    var age: Int
-}
-
-func addOneYear(student: StudentClass) {
-    student.age+=1
-}
-
-
-var stClass = StudentClass(name: "Bob", age: 18)
-stClass.name = "Alex"
-stClass.age = 21
-
-var stStruct1 = StudentStruct(name: "Sam", age: 24)
-//stStruct1.name = "Sam2"
-//stStruct1.age = 21
-stStruct1
-
-var stStruct2 = stStruct1
-stStruct2.name = "Samuel"
-stStruct2.age = 25
-stStruct1
-stStruct2
-
-var stClass2 = stClass
-stClass2.name = "AAA"
-stClass2.age = 20
-stClass
-stClass2
-
-addOneYear(student: stClass)
-print(stClass)
-*/
-
-// TASK: Number1
-/*
-struct Student {
-    var name: String
-    var surname: String
-    var year: Int
-    var mark: Float
-}
-var student1 = Student(name: "Bob", surname: "Marley", year: 1983, mark: 3.6)
-var student2 = Student(name: "Mark", surname: "Brown", year: 1993, mark: 4.2)
-var student3 = Student(name: "Kory", surname: "Taylor", year: 1999, mark: 3.0)
-var student4 = Student(name: "Harry", surname: "Potter", year: 1985, mark: 4.7)
-var student5 = Student(name: "Rob", surname: "Stark", year: 1979, mark: 5.0)
-
-var Journal = [student1, student2, student3, student4, student5]
-
-// TASK: Number 2
-
-func printJournal(_journal: [Student]) {
-    for (index, student) in Journal.enumerated() {
-        print("\(index+1). Name: \(student.name) \(student.surname). Year of birth: \(student.year). Avarage mark: \(student.mark)")
-    }
-    print()
-}
-
-//printJournal(_journal: Journal)
-
-
-var sortedByMark = Journal.sorted(by: {$0.mark > $1.mark})
-print(sortedByMark)
-
-
-*/
-
-// lesson: Properties
 import Foundation
 /*
-struct Name {
-    var firstName: String {
-        willSet(newFirstName) {
-            print("wiil set " + newFirstName + " instead of " + firstName)
-        }
-        didSet(oldFirstName) {
-            print("did set " + firstName + " instead of  " + oldFirstName)
-        }
-    }
-    
-}
-var student = Name(firstName: "Alex")
-
-student.firstName = "Bob"
-
-*/
 class Human {
     var name: String
     class var maxAge: Int {
@@ -110,7 +7,7 @@ class Human {
     }
     var age: Int {
         didSet {
-            if age > maxAge {
+            if age > Human.maxAge {
                 age = oldValue
             }
         }
@@ -120,6 +17,7 @@ class Human {
         self.name = name
         self.age = age
     }
+    lazy var storyOfMyLife: String! = "This is a story of my entire life..."
 }
 
 enum Direction {
@@ -128,7 +26,15 @@ enum Direction {
     case Right
     case Top
     case Bottom
+    
+    var isVertical: Bool {
+        return self == .Top || self == .Bottom
+    }
+    var isHorizontal: Bool {
+        return !isVertical
+    }
 }
+
 
 struct Cat {
     var name: String
@@ -150,3 +56,67 @@ struct Cat {
 let human = Human(name: "Peter", age: 40)
 let cat = Cat(name: "Whiten", age: 10)
 Cat.totalCats
+ 
+
+enum colors {
+    case yellow
+    case red
+    case black
+    case white
+    case brown
+}
+*/
+class Human {
+    static var maxAge = 100
+    static var maxLenName = 11
+    static var maxLenSec = 20
+    static var totalHuman = 0
+    static var maxRost = 200
+    static var maxVess = 150
+    var name: String {
+        didSet {
+            if name.count >= Human.maxLenName {
+                name = oldValue
+            }
+        }
+    }
+    var age: Int {
+        didSet {
+            if age >= Human.maxAge {
+                age = oldValue
+            }
+        }
+    }
+    var secName: String {
+        didSet {
+            if secName.count >= Human.maxLenSec {
+                secName = oldValue
+            }
+        }
+    }
+    var rost: Int {
+        didSet {
+            if rost >= Human.maxRost {
+                rost = oldValue
+            }
+        }
+    }
+    var vess: Int {
+        didSet {
+            if vess >= Human.maxVess {
+                vess = oldValue
+            }
+        }
+    }
+    init (name: String, age: Int, secName: String, rost: Int, vess: Int) {
+        self.name = name
+        self.age = age
+        self.secName = secName
+        self.rost = rost
+        self.vess = vess
+        Human.totalHuman += 1
+    }
+}
+
+let human1 = Human(name: "Peter", age: 45, secName: "Rolland", rost: 170, vess: 81)
+Human.totalHuman
